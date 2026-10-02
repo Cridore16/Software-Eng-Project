@@ -1,3 +1,4 @@
+package apiproject;
 public class PrototypeDataStore{
     public void prototype(DataStore dataStore) {
 // store some data

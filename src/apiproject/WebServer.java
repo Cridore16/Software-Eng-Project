@@ -1,4 +1,4 @@
-package PrototypeSomeApi;
+package apiproject;
 
 public interface WebServer {
     LoginResponse login(LoginRequest loginRequest);
