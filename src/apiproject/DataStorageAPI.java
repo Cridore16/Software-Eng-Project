@@ -5,5 +5,5 @@ import java.util.List;
 @ProcessAPI
 public interface DataStorageAPI{
     List<Integer> readInputData(String input);
-
+//input info
 }
