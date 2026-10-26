@@ -9,11 +9,14 @@ public class TestUserComputeEngineAPI {
     @Test
     public void testUserComputeEngineAPI() {
 
-        UserComputeEngineAPI dependency =
-                Mockito.mock(UserComputeEngineAPI.class);
+        DataStorageAPI dataStorage =
+                Mockito.mock(DataStorageAPI.class);
+
+        ComputationAPI computation =
+                Mockito.mock(ComputationAPI.class);
 
         UserComputeEngineAPIImpl api =
-                new UserComputeEngineAPIImpl();
+                new UserComputeEngineAPIImpl(dataStorage, computation);
 
         assertNotNull(api);
     }
