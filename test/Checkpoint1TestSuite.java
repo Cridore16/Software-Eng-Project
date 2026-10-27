@@ -77,6 +77,7 @@ public class Checkpoint1TestSuite {
     // - two status checks
     // - both of which failed at some point
     // - both of which are passing now
+    // 
     private boolean hasStatusChecks(String baseApiPath, String prNumber) throws Exception {
         String getCommits = baseApiPath + "pulls/" + prNumber + "/commits";
         String commitResult = curl(getCommits);
