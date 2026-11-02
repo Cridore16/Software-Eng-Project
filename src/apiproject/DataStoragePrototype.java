@@ -9,6 +9,6 @@ public class DataStoragePrototype {
     public void prototypeDataStorage(DataStorageAPI api) {
 
         List<Integer> mockData =
-            api.readInputData("input.txxt");
+            api.readInputData("input.txt");
     }
 }
