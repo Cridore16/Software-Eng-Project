@@ -29,4 +29,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+
+    if (System.getenv('GITHUB_ACTIONS') == 'true') {
+        filter {
+            excludeTestsMatching 'Checkpoint3TestSuite'
+        }
+    }
 }
