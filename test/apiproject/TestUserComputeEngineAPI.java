@@ -1,7 +1,7 @@
 package apiproject;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.mockito.Mockito;
 
 public class TestUserComputeEngineAPI {
