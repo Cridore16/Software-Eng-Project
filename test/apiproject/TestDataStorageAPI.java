@@ -13,5 +13,4 @@ public class TestDataStorageAPI {
 
         assertNotNull(api);
     }
-    //
 }
