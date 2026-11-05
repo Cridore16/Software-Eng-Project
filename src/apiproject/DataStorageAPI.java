@@ -1,9 +1,12 @@
 package apiproject;
+
 import project.annotations.ProcessAPI;
 import java.util.List;
 
 @ProcessAPI
-public interface DataStorageAPI{
+public interface DataStorageAPI {
+
     List<Integer> readInputData(String input);
-//input info
+
+    void writeOutputData(String output);
 }
