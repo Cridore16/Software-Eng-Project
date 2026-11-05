@@ -1,5 +1,3 @@
-
-
 package apiproject;
 
 public class ComputationAPIImpl implements ComputationAPI {
@@ -9,12 +7,6 @@ public class ComputationAPIImpl implements ComputationAPI {
 
     @Override
     public String computeResult(int input) {
-
-        // Only positive integers are valid for this computation.
-        if (input <= 0) {
-            return "ERROR: Input must be a positive integer";
-        }
-
         StringBuilder result = new StringBuilder();
 
         for (int i = 1; i <= input; i++) {

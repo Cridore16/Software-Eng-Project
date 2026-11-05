@@ -33,7 +33,6 @@ test {
     if (System.getenv('GITHUB_ACTIONS') == 'true') {
         filter {
             excludeTestsMatching 'Checkpoint1TestSuite'
-            excludeTestsMatching 'Checkpoint3TestSuite'
         }
     }
 }
