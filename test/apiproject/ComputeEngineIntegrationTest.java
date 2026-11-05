@@ -1,14 +1,13 @@
 
 package apiproject;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
 
 public class ComputeEngineIntegrationTest {
 
@@ -48,4 +47,40 @@ public class ComputeEngineIntegrationTest {
         assertNotNull(computation);
         assertNotNull(computeEngine);
     }
+    
+    @Test
+    public void testStorageExceptionHandled() {
+
+        // Create a storage component that deliberately fails.
+        DataStorageAPI failingStorage = new DataStorageAPI() {
+
+            @Override
+            public List<Integer> readInputData(String input) {
+                throw new RuntimeException("Simulated storage failure");
+            }
+
+            @Override
+            public void writeOutputData(String output) {
+                // No writing needed for this test.
+            }
+        };
+
+        ComputationAPIImpl computation =
+                new ComputationAPIImpl();
+
+        UserComputeEngineAPIImpl computeEngine =
+                new UserComputeEngineAPIImpl(
+                        failingStorage,
+                        computation);
+
+        // The coordinator should catch the storage exception.
+        computeEngine.configureJob(
+                "input.txt",
+                "output.txt",
+                ',');
+
+        // Verify the exception became an error status.
+        assertEquals("ERROR", computeEngine.getLastJobStatus());
+    }
+
 }
