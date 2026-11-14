@@ -41,8 +41,7 @@ public class UserComputeEngineAPIImpl implements UserComputeEngineAPI {
         }
 
         try {
-            List<Integer> inputs =
-                    dataStorage.readInputData(inputSource);
+            List<Integer> inputs = dataStorage.readInputData(inputSource);
 
             if (inputs == null) {
                 lastJobStatus = "READ_ERROR";
@@ -66,12 +65,17 @@ public class UserComputeEngineAPIImpl implements UserComputeEngineAPI {
                 results.append(result);
             }
 
-            dataStorage.writeOutputData(results.toString());
+            DataStorageAPI outputStorage = dataStorage;
+
+            if (dataStorage instanceof DataStorageAPIImpl) {
+                outputStorage = new DataStorageAPIImpl(outputDestination);
+            }
+
+            outputStorage.writeOutputData(results.toString());
 
             // Check the result when using our file-based storage.
-            if (dataStorage instanceof DataStorageAPIImpl) {
-                DataStorageAPIImpl storage =
-                        (DataStorageAPIImpl) dataStorage;
+            if (outputStorage instanceof DataStorageAPIImpl) {
+                DataStorageAPIImpl storage = (DataStorageAPIImpl) outputStorage;
 
                 if (!storage.wasLastWriteSuccessful()) {
                     lastJobStatus = "WRITE_ERROR";
