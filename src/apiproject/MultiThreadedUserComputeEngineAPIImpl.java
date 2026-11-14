@@ -41,12 +41,10 @@ public class MultiThreadedUserComputeEngineAPIImpl
             return;
         }
 
-        ExecutorService executor =
-                Executors.newFixedThreadPool(THREAD_COUNT);
+        ExecutorService executor = Executors.newFixedThreadPool(THREAD_COUNT);
 
         try {
-            List<Integer> inputs =
-                    dataStorage.readInputData(inputSource);
+            List<Integer> inputs = dataStorage.readInputData(inputSource);
 
             if (inputs == null) {
                 return;
@@ -80,23 +78,24 @@ public class MultiThreadedUserComputeEngineAPIImpl
             DataStorageAPI outputStorage = dataStorage;
 
             if (dataStorage instanceof DataStorageAPIImpl) {
-                outputStorage =
-                        new DataStorageAPIImpl(outputDestination);
+                outputStorage = new DataStorageAPIImpl(outputDestination);
             }
 
             outputStorage.writeOutputData(results.toString());
 
             if (outputStorage instanceof DataStorageAPIImpl) {
-                DataStorageAPIImpl storage =
-                        (DataStorageAPIImpl) outputStorage;
+                DataStorageAPIImpl storage = (DataStorageAPIImpl) outputStorage;
 
                 if (!storage.wasLastWriteSuccessful()) {
                     return;
                 }
             }
 
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+        } catch (java.util.concurrent.ExecutionException e) {
+            // A computation task failed.
+            return;
         } finally {
             executor.shutdown();
         }
