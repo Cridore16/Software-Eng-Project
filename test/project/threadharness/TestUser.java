@@ -1,4 +1,4 @@
-package project.threadHarness;
+package project.threadharness;
 
 import java.io.File;
 
