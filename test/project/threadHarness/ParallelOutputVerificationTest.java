@@ -1,5 +1,5 @@
 
-package project.threadHarness;
+package project.threadharness;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
