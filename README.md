@@ -21,3 +21,5 @@ which produces:
 
 `1,2,3,6`
 
+The multithreaded NetworkAPI uses a fixed thread pool of four workers. Each input is submitted as an independent computation task, and Future results are retrieved in input order to preserve the original output ordering.
+
