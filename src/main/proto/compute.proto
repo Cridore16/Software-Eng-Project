@@ -13,6 +13,8 @@ message JobRequest {
     string input_source = 1;
     string output_destination = 2;
     string delimiter = 3;
+    repeated int32 numbers = 4;
+    bool use_typed_numbers = 5;
 }
 
 message JobResponse {
