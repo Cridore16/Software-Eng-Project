@@ -5,9 +5,7 @@ import apiproject.grpc.JobResponse;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Checkpoint7RegressionTest {
 
@@ -101,4 +99,3 @@ public class Checkpoint7RegressionTest {
         assertEquals("WRITE_ERROR", decoded.getMessage());
     }
 }
-
