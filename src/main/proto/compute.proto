@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "apiproject.grpc";
+
+package compute;
+
+service ComputeService {
+    rpc ConfigureJob (JobRequest) returns (JobResponse);
+}
+
+message JobRequest {
+    string input_source = 1;
+    string output_destination = 2;
+    string delimiter = 3;
+    repeated int32 numbers = 4;
+    bool use_typed_numbers = 5;
+}
+
+message JobResponse {
+    bool success = 1;
+    string message = 2;
+}
