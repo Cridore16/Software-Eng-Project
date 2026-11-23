@@ -72,6 +72,14 @@ public class UserComputeEngineAPIImpl implements UserComputeEngineAPI {
             }
 
             outputStorage.writeOutputData(results.toString());
+            if (outputStorage instanceof apiproject.grpc.StorageClient) {
+                apiproject.grpc.StorageClient remote = (apiproject.grpc.StorageClient) outputStorage;
+
+                if (!remote.wasLastWriteSuccessful()) {
+                    lastJobStatus = "WRITE_ERROR";
+                    return;
+                }
+            }
 
             // Check the result when using our file-based storage.
             if (outputStorage instanceof DataStorageAPIImpl) {

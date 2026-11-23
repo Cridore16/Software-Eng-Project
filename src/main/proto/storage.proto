@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "apiproject.grpc";
+
+package storage;
+
+service StorageService {
+    rpc ReadInputData (ReadRequest) returns (ReadResponse);
+    rpc WriteOutputData (WriteRequest) returns (WriteResponse);
+}
+
+message ReadRequest {
+    string input = 1;
+}
+
+message ReadResponse {
+    repeated int32 numbers = 1;
+}
+
+message WriteRequest {
+    string output = 1;
+    string destination = 2;
+}
+
+message WriteResponse {
+    bool success = 1;
+    string message = 2;
+}
